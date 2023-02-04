@@ -1,14 +1,16 @@
-public abstract class Veiculo {
+public class Veiculo {
     private String modelo;
     private String marca;
-    private Integer ano;
+    private String ano;
+    private String categoria;
     private String placa;
     private Double quilometragem;
 
-    public Veiculo(String modelo, String marca, Integer ano, String placa, Double quilometragem) {
+    public Veiculo(String modelo, String marca, String ano, String categoria, String placa, Double quilometragem) {
         this.modelo = modelo;
         this.marca = marca;
         this.ano = ano;
+        this.categoria = categoria;
         this.placa = placa;
         this.quilometragem = quilometragem;
     }
@@ -19,7 +21,7 @@ public abstract class Veiculo {
     public String getMarca() {
         return this.marca;
     }
-    public Integer getAno() {
+    public String getAno() {
         return this.ano;
     }
     public Double getQuilometragem() {
@@ -27,5 +29,8 @@ public abstract class Veiculo {
     }
     public String getPlaca() {
         return this.placa;
+    }
+    public String getCategoria() {
+        return this.categoria;
     }
 }

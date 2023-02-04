@@ -1,53 +1,64 @@
-public class Dados implements Cadastrador{
+public class Dados implements Cadastrador, Exibidor{
+
 
     @Override
-    public void addCarro(Carro carro) {
-        listaDeCarros.add(carro);
+    public <T extends Veiculo> void cadastrarVeiculo(T veiculo) {
+            listaDeVeiculos.add(veiculo);
     }
 
+    public <T extends Veiculo> void deletarVeiculo(T veiculo) {
+        if (isPlacaDisponivel(veiculo.getPlaca())) {
+            listaDeVeiculos.remove(veiculo);
+        }
+    }
+    public <T extends Veiculo> void atualizarVeiculo(T veiculo) {
+        if (!isPlacaDisponivel(veiculo.getPlaca())) {
+            throw new IllegalArgumentException("Veículo não disponível!");
+        }
+        deletarVeiculo(veiculo);
+        cadastrarVeiculo(veiculo);
+    }
+    public Veiculo consultarPlaca(String placa) {
+        for (Veiculo veiculo: listaDeVeiculos) {
+            if (veiculo.getPlaca().equals(placa)) {
+                return veiculo;
+            }
+        }
+        return null;
+    }
+    private boolean isPlacaDisponivel(String placa) {
+        return consultarPlaca(placa) != null;
+    }
     @Override
-    public void exibirListaDeCarros() {
-        System.out.println("Lista de Carros: \n");
-        for (Carro carro : listaDeCarros) {
-            System.out.println("Modelo: "+carro.getModelo()+
-                    "\nMarca: "+carro.getMarca()+
-                    "\nAno: "+carro.getAno()+
-                    "\nPlaca: "+carro.getPlaca()+
-                    "\nKms Rodados: "+carro.getQuilometragem());
+    public void exibirListaDeVeiculos() {
+        System.out.println("Lista de Veículos: \n");
+        for (Veiculo veiculo : listaDeVeiculos) {
+            System.out.println(
+                    "Tipo: "+veiculo.getClass()+
+                            "\nCategoria: "+veiculo.getCategoria()+
+                            "\nModelo: "+veiculo.getModelo()+
+                    "\nMarca: "+veiculo.getMarca()+
+                    "\nAno: "+veiculo.getAno()+
+                    "\nPlaca: "+veiculo.getPlaca()+
+                    "\nKms Rodados: "+veiculo.getQuilometragem());
                     System.out.println("--------------------");
         }
     }
 
     @Override
-    public void addClientePF(ClientePF clientePF) {
-        listaDeClientesPF.add(clientePF);
+    public <T extends Cliente> void cadastrarCliente(T cliente) {
+        listaDeClientes.add(cliente);
     }
 
     @Override
-    public void exibirListaDeClientesPF() {
-        System.out.println("Lista de Clientes (Pessoa Física): \n");
-        for (ClientePF clientePF : listaDeClientesPF) {
-            System.out.println("ID Cliente: "+clientePF.getIdCliente()+
-                    "\nNome: "+clientePF.getNomeCliente()+
-                    "\nCPF: "+clientePF.getCpfCliente());
-                    System.out.println("--------------------");
-        }
-
-    }
-
-    @Override
-    public void addClientePJ(ClientePJ clientePJ) {
-        listaDeClientesPJ.add(clientePJ);
-    }
-
-    @Override
-    public void exibirListaDeClientesPJ() {
-        System.out.println("Lista de Clientes (Pessoa Jurídica): \n");
-        for (ClientePJ clientePJ : listaDeClientesPJ) {
-            System.out.println("ID Cliente: "+clientePJ.getIdCliente()+
-                    "\nRazão Social: "+clientePJ.getRazaoSocialCliente()+
-                    "\nCNPJ: "+clientePJ.getCnpjCliente());
-                    System.out.println("--------------------");
+    public void exibirListaDeClientes() {
+        System.out.println("Lista de Clientes: \n");
+        for (Cliente cliente : listaDeClientes) {
+            System.out.println(
+                    "Tipo: "+cliente.getClass()+
+                            "\nID: "+cliente.getIdCliente());
+            System.out.println("--------------------");
         }
     }
+
 }

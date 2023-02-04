@@ -1,12 +1,12 @@
 public class Moto extends Veiculo{
-    private Integer idMoto;
+    private String idMoto;
 
-    public Moto(String modelo, String marca, Integer ano, String placa, Double quilometragem, Integer idMoto) {
-        super(modelo, marca, ano, placa, quilometragem);
+    public Moto(String modelo, String marca, String ano, String categoria, String placa, Double quilometragem, String idMoto) {
+        super(modelo, marca, ano, categoria, placa, quilometragem);
         this.idMoto = idMoto;
     }
 
-    public Integer getIdMoto() {
+    public String getIdMoto() {
         return this.idMoto;
     }
 }

@@ -2,16 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface Cadastrador {
-    List<Carro> listaDeCarros = new ArrayList<>();
-    List<ClientePF> listaDeClientesPF = new ArrayList<>();
-    List<ClientePJ> listaDeClientesPJ = new ArrayList<>();
+    List<Veiculo> listaDeVeiculos = new ArrayList<>();
+    List<Cliente> listaDeClientes = new ArrayList<>();
 
-    void addCarro(Carro carro);
-    void exibirListaDeCarros();
-    void addClientePF(ClientePF clientePF);
-    void exibirListaDeClientesPF();
-    void addClientePJ(ClientePJ clientePJ);
-    void exibirListaDeClientesPJ();
+    <T extends Veiculo> void cadastrarVeiculo(T veiculo);
+    <T extends Cliente>void cadastrarCliente(T cliente);
 
 
 }
