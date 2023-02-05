@@ -1,3 +1,3 @@
 public interface Locador {
-    void alugar();
+    void alugar(TipoVeiculo.Tipo tipo);
 }

@@ -1,4 +1,4 @@
-public class Carro extends Veiculo implements Locador{
+public class Carro extends Veiculo {
     private String idCarro;
 
     public Carro(TipoVeiculo.Tipo tipo, String modelo, String marca, String ano, String categoria, String placa, Double quilometragem, String idCarro) {
@@ -11,8 +11,4 @@ public class Carro extends Veiculo implements Locador{
         return this.idCarro;
     }
 
-    @Override
-    public void alugar() {
-
-    }
 }

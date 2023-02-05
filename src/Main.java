@@ -1,6 +1,10 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+
 public class Main {
     public static void main(String[] args) {
-        Dados banco = new Dados();
+        ManipuladorDeDados banco = new ManipuladorDeDados();
         Moto m1 = new Moto (TipoVeiculo.Tipo.PEQUENO, "Suzuki","Ninja","2000",
                 "pequeno","AAA-1111",10000.00,"50");
 //        Moto m2 = new Moto ("AAA","BBB","2000",
@@ -13,8 +17,8 @@ public class Main {
 //        Carro c1 =
 //                new Carro("Uno","Fiat",
 //                        "2000","SUV", "GRJ-3939",595959.33,"594");
-        Cliente pf1 = new ClientePF("2","Pedro","34066655544");
-        Cliente pj1 = new ClientePJ("545","Fred Lanches","34211222000102");
+        Cliente pf1 = new ClientePF("2", LocalDateTime.of(2023, Month.FEBRUARY, 4, 15, 30), LocalDateTime.of(2023, Month.FEBRUARY, 7, 15, 31), "Pedro","34066655544");
+        Cliente pj1 = new ClientePJ("545", LocalDateTime.of(2023, Month.JANUARY, 25, 18, 30), LocalDateTime.of(2023, Month.FEBRUARY, 7, 18, 30),"Fred Lanches","34211222000102");
 //        banco.cadastrarVeiculo(m1);
 //        banco.cadastrarVeiculo(m3);
 //        banco.exibirListaDeVeiculos();
@@ -30,7 +34,9 @@ public class Main {
 
         System.out.println(m1.toString());
 
-        System.out.println(banco.consultarCliente(pf1.getIdCliente()));
+        //System.out.println(banco.consultarCliente(pf1.getIdCliente()));
+        System.out.println(pf1.getDataDaLocacao());
+
 
     }
 }
