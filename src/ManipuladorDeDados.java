@@ -1,4 +1,4 @@
-public class ManipuladorDeDados implements Cadastrador, Exibidor{
+public class ManipuladorDeDados implements Cadastrador, Exibidor {
 
 
     @Override

@@ -40,6 +40,5 @@ public class Main {
         //System.out.println(banco.consultarCliente(pf1.getIdCliente()));
         System.out.println(pf1.getDataDaLocacao());
 
-
     }
 }

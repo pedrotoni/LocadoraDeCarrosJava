@@ -1,11 +1,8 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
-public abstract class Cliente implements Locador, Devolvedor{
+public abstract class Cliente implements Locador, Devolvedor {
     private String idCliente;
 
     private LocalDateTime dataDaLocacao;
@@ -44,10 +41,31 @@ public abstract class Cliente implements Locador, Devolvedor{
 
     }
 
+
     public Duration getTempoDecorrido() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         return Duration.between(getDataDaLocacao(),getDataDaDevolucao());
     }
+
+//    public void getTempoDecorrido(Date date1, Date date2) {
+//        String pattern = "MM-dd-yyyy";
+//        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//
+//        try {
+//             date1 = sdf.parse(String.valueOf(dataDaDevolucao));
+//             date2 = sdf.parse(String.valueOf(dataDaLocacao));
+//
+//            // obtém a diferença entre duas datas em minutos
+//            long elapsedms = date1.getTime() - date2.getTime();
+//            long diff = TimeUnit.MINUTES.convert(elapsedms, TimeUnit.MILLISECONDS);
+//            System.out.println(diff);
+//
+//        }
+//        catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 
 
     @Override
