@@ -2,7 +2,7 @@ public class ClientePF extends Cliente {
     private String nomeCliente;
     private String cpfCliente;
 
-    public ClientePF(Integer idCliente, String nomeCliente, String cpfCliente) {
+    public ClientePF(String idCliente, String nomeCliente, String cpfCliente) {
         super(idCliente);
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;

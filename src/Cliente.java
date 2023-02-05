@@ -1,10 +1,10 @@
 public abstract class Cliente {
-    private Integer idCliente;
-    public Cliente(Integer idCliente) {
+    private String idCliente;
+    public Cliente(String idCliente) {
         this.idCliente = idCliente;
     }
 
-    public Integer getIdCliente() {
+    public String getIdCliente() {
         return this.idCliente;
     }
 }

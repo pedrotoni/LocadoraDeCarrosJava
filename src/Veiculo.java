@@ -1,4 +1,5 @@
 public class Veiculo {
+    private TipoVeiculo.Tipo tipo;
     private String modelo;
     private String marca;
     private String ano;
@@ -33,4 +34,23 @@ public class Veiculo {
     public String getCategoria() {
         return this.categoria;
     }
+
+    public void setTipo(TipoVeiculo.Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Veiculo{" +
+                "tipo=" + tipo +
+                ", modelo='" + modelo + '\'' +
+                ", marca='" + marca + '\'' +
+                ", ano='" + ano + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", placa='" + placa + '\'' +
+                ", quilometragem=" + quilometragem +
+                '}';
+    }
 }
+
+

@@ -3,7 +3,10 @@ public class Dados implements Cadastrador, Exibidor{
 
     @Override
     public <T extends Veiculo> void cadastrarVeiculo(T veiculo) {
-            listaDeVeiculos.add(veiculo);
+        if (isPlacaDisponivel(veiculo.getPlaca())) {
+            throw new IllegalArgumentException("Veículo consta no banco de dados");
+        }
+        listaDeVeiculos.add(veiculo);
     }
 
     public <T extends Veiculo> void deletarVeiculo(T veiculo) {
@@ -45,10 +48,15 @@ public class Dados implements Cadastrador, Exibidor{
         }
     }
 
+    //CLIENTES
     @Override
     public <T extends Cliente> void cadastrarCliente(T cliente) {
         listaDeClientes.add(cliente);
     }
+
+   // public <T extends ClientePJ> void cadastrarCliente(T clientePJ) {
+//        listaDeClientes.add(clientePJ);
+//    }
 
     @Override
     public void exibirListaDeClientes() {
@@ -60,5 +68,15 @@ public class Dados implements Cadastrador, Exibidor{
             System.out.println("--------------------");
         }
     }
+
+    public Cliente consultarCliente(String idCliente) {
+        for (Cliente cliente: listaDeClientes) {
+            if (cliente.getIdCliente().equals(cliente)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
 
 }

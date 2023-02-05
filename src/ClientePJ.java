@@ -2,7 +2,7 @@ public class ClientePJ extends Cliente {
     private String razaoSocialCliente;
     private String cnpjCliente;
 
-    public ClientePJ(Integer idCliente, String razaoSocialCliente, String cnpjCliente) {
+    public ClientePJ(String idCliente, String razaoSocialCliente, String cnpjCliente) {
         super(idCliente);
         this.razaoSocialCliente = razaoSocialCliente;
         this.cnpjCliente = cnpjCliente;

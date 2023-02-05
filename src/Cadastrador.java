@@ -7,6 +7,8 @@ public interface Cadastrador {
 
     <T extends Veiculo> void cadastrarVeiculo(T veiculo);
     <T extends Cliente>void cadastrarCliente(T cliente);
+    //<T extends ClientePJ>void cadastrarCliente(T cliente);
+
 
 
 }
