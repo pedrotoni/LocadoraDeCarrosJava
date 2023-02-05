@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -27,6 +28,8 @@ public class Main {
 //        banco.exibirListaDeVeiculos();
 
        // System.out.println("Placa do carro:" + banco.consultarPlaca(m1.getPlaca()).toString());
+
+        System.out.println(pj1.getTempoDecorrido());
 
         banco.cadastrarCliente(pf1);
         banco.cadastrarCliente(pj1);

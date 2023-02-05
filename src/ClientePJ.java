@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 
-public class ClientePJ extends Cliente implements Locador, Devolvedor{
+public class ClientePJ extends Cliente{
     private String razaoSocialCliente;
     private String cnpjCliente;
 
@@ -17,14 +17,4 @@ public class ClientePJ extends Cliente implements Locador, Devolvedor{
         return this.cnpjCliente;
     }
 
-
-    @Override
-    public void devolver() {
-
-    }
-
-    @Override
-    public void alugar(TipoVeiculo.Tipo tipo) {
-
-    }
 }

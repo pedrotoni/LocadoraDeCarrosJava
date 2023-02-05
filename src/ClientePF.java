@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 
-public class ClientePF extends Cliente implements Locador, Devolvedor {
+public class ClientePF extends Cliente {
     private String nomeCliente;
     private String cpfCliente;
 
@@ -17,19 +17,4 @@ public class ClientePF extends Cliente implements Locador, Devolvedor {
         return this.cpfCliente;
     }
 
-    @Override
-    public void devolver() {
-
-    }
-
-    @Override
-    public void alugar(TipoVeiculo.Tipo tipo) {
-        if(tipo == TipoVeiculo.Tipo.PEQUENO) {
-            
-        } else if (tipo == TipoVeiculo.Tipo.MEDIO) {
-            
-        } else if (tipo == TipoVeiculo.Tipo.SUV) {
-            
-        }
-    }
 }
