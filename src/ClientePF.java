@@ -12,11 +12,14 @@ public class ClientePF extends Cliente {
         this.cpfCliente = cpfCliente;
     }
 
+
+    @Override
     public String getNomeCliente() {
         return this.nomeCliente;
     }
+
+    @Override
     public String getCpfCliente() {
         return this.cpfCliente;
     }
-
 }

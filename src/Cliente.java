@@ -29,6 +29,19 @@ public abstract class Cliente implements Locador, Devolvedor {
         return dataDaDevolucao;
     }
 
+    public String getNomeCliente() {
+        return null;
+    }
+    public String getCpfCliente() {
+        return null;
+    };
+    public String getRazaoSocialCliente() {
+        return null;
+    };
+    public String getCnpjCliente() {
+        return null;
+    };
+
     @Override
     public String toString() {
         return "Cliente{" +

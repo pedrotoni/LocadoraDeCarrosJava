@@ -3,15 +3,13 @@ public class Veiculo {
     private String modelo;
     private String marca;
     private String ano;
-    private String categoria;
     private String placa;
     private Double quilometragem;
 
-    public Veiculo(String modelo, String marca, String ano, String categoria, String placa, Double quilometragem) {
+    public Veiculo(String modelo, String marca, String ano, String placa, Double quilometragem) {
         this.modelo = modelo;
         this.marca = marca;
         this.ano = ano;
-        this.categoria = categoria;
         this.placa = placa;
         this.quilometragem = quilometragem;
     }
@@ -31,12 +29,12 @@ public class Veiculo {
     public String getPlaca() {
         return this.placa;
     }
-    public String getCategoria() {
-        return this.categoria;
-    }
 
     public void setTipo(TipoVeiculo.Tipo tipo) {
         this.tipo = tipo;
+    }
+    public TipoVeiculo.Tipo getTipo() {
+        return this.tipo;
     }
 
     @Override
@@ -46,7 +44,6 @@ public class Veiculo {
                 ", modelo='" + modelo + '\'' +
                 ", marca='" + marca + '\'' +
                 ", ano='" + ano + '\'' +
-                ", categoria='" + categoria + '\'' +
                 ", placa='" + placa + '\'' +
                 ", quilometragem=" + quilometragem +
                 '}';

@@ -14,9 +14,8 @@ public class ClientePJ extends Cliente{
 
     public String getRazaoSocialCliente() {
         return this.razaoSocialCliente;
-    }
+    };
     public String getCnpjCliente() {
         return this.cnpjCliente;
-    }
-
+    };
 }
