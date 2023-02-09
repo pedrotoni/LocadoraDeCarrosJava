@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class ManipuladorDeDados implements Cadastrador, Exibidor {
+
 
     public void buscaVeiculo(List<Veiculo> lista, String nomeBusca) {
         System.out.println("Resultado da busca por "+nomeBusca);

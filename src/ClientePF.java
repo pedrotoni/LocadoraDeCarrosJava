@@ -6,12 +6,11 @@ public class ClientePF extends Cliente {
     private String nomeCliente;
     private String cpfCliente;
 
-    public ClientePF(String idCliente, LocalDateTime dataDaLocacao, LocalDateTime dataDaDevolucao, String nomeCliente, String cpfCliente) {
-        super(idCliente, dataDaLocacao, dataDaDevolucao);
+    public ClientePF(String idCliente, String nomeCliente, String cpfCliente) {
+        super(idCliente);
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;
     }
-
 
     @Override
     public String getNomeCliente() {

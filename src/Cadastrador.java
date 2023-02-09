@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface Cadastrador {
+
     List<Veiculo> listaDeVeiculos = new ArrayList<>();
     List<Cliente> listaDeClientes = new ArrayList<>();
 
