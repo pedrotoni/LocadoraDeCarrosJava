@@ -1,9 +1,4 @@
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-
-public class Main {
+public class Main2 {
     public static void main(String[] args) {
         /*
         Criar uma aplicação que gerencie o aluguel de veículos, onde cada item abaixo seja considerado:
@@ -33,19 +28,8 @@ public class Main {
     medio	R$ 150,00
     SUV	R$ 200,00
          */
-        ManipuladorDeDados banco = new ManipuladorDeDados();
-
-        Carro fox = new Carro(TipoVeiculo.Tipo.PEQUENO,"Fox","Volkswagen","2005",
-                "AKE-3010",30503.33,"1");
-        Carro fox2 = new Carro(TipoVeiculo.Tipo.PEQUENO,"Fox","Volkswagen","2008",
-                "KYO-5004",6456.43,"66");
-
-        Carro hillux = new Carro(TipoVeiculo.Tipo.SUV,"Hillux","Toyota","2023",
-                "KYO-5577",856.43,"69");
-        Moto cg = new Moto(TipoVeiculo.Tipo.PEQUENO,"CG","Honda","2010",
-                "BIE-3445",2000.00,"3");
-        Caminhao scania = new Caminhao(TipoVeiculo.Tipo.MEDIO,"Truck","Scania",
-                "1999","KEO-3100",300054.22,"8");
+        DadosCliente banco = new DadosCliente();
+//                "1999","KEO-3100",300054.22,"8");
         ClientePF pedro = new ClientePF ("2",
                 /* LocalDateTime.of(2023,10,2,8,45),
                 LocalDateTime.of(2023,11,2,8,34),*/
@@ -67,21 +51,12 @@ public class Main {
                 LocalDateTime.of(2023,11,2,8,34),*/
                 "Carla","34655544433");
 
-        banco.cadastrarVeiculo(fox);
-        banco.cadastrarVeiculo(fox2);
-        banco.cadastrarVeiculo(cg);
-        banco.cadastrarVeiculo(scania);
-        banco.cadastrarVeiculo(hillux);
-        banco.exibirListaDeVeiculos();
-        banco.buscaVeiculo(Cadastrador.listaDeVeiculos,"Fox");
-        banco.buscaVeiculo(Cadastrador.listaDeVeiculos, "CG");
-        banco.cadastrarCliente(pedro);
-        banco.cadastrarCliente(pedro2);
-        banco.cadastrarCliente(fabrica);
-        banco.cadastrarCliente(fabrica2);
-        banco.exibirListaDeClientes();
-        banco.buscaCliente(Cadastrador.listaDeClientes,"Loja da Amanda");
-
+        banco.cadastrar(pedro);
+        banco.cadastrar(pedro2);
+        banco.cadastrar(fabrica);
+        banco.cadastrar(fabrica2);
+        banco.listarTodos();
+        banco.buscar(banco.listaDeClientes,"Loja da Amanda");
 
     }
 }

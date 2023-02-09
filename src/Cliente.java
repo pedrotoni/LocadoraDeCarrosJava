@@ -9,14 +9,13 @@ public abstract class Cliente extends Aluguel {
         this.idCliente = idCliente;
     }
 
-    @Override
-    public void alugar(TipoVeiculo.Tipo tipo) {
-        super.alugar(tipo);
-    }
+
 
     public String getIdCliente() {
         return this.idCliente;
     }
+
+    public abstract void alugar(TipoVeiculo.Tipo tipo, String idCliente);
 
     public String getNomeCliente() {
         return null;

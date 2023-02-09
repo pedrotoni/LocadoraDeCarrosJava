@@ -1,22 +1,22 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Aluguel {
+public abstract class Aluguel {
     private LocalDateTime dataLocacao;
     private Devolucao dataDevolucao;
 
     public void alugar(TipoVeiculo.Tipo tipo) {
-        double valorAluguel = 0;
+            double valorAluguel = 0;
 
-        if(tipo == TipoVeiculo.Tipo.PEQUENO) {
-            valorAluguel = calcularAluguel() * 100.00;
-        } else if (tipo == TipoVeiculo.Tipo.MEDIO) {
-            valorAluguel = calcularAluguel() * 150.00;
-        } else if (tipo == TipoVeiculo.Tipo.SUV) {
-            valorAluguel = calcularAluguel() * 200.00;
-        }
+            if(tipo == TipoVeiculo.Tipo.PEQUENO) {
+                valorAluguel = calcularAluguel() * 100.00;
+            } else if (tipo == TipoVeiculo.Tipo.MEDIO) {
+                valorAluguel = calcularAluguel() * 150.00;
+            } else if (tipo == TipoVeiculo.Tipo.SUV) {
+                valorAluguel = calcularAluguel() * 200.00;
+            }
+            System.out.println("O aluguel desse veículo por " + calcularAluguel() +" dias" + " irá custar: " + valorAluguel + " reais.");
     }
-
     public Devolucao getDataDevolucao() {
         return dataDevolucao;
     }
