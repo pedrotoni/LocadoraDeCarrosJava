@@ -1,12 +1,16 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Set;
 
 public class Locadora {
     HashMap<Veiculo, Cliente> locadora;
     private LocalDateTime dataLocacao;
+
     private LocalDateTime dataDevolucao;
+
+    private Locale local;
 
     public Locadora() {
         locadora = new HashMap<>();
@@ -36,14 +40,15 @@ public class Locadora {
 
     private Double calcularAluguel(Veiculo veiculo, TipoVeiculo.Tipo tipo) {
         //double valorAluguel = 0;
-        long dias = Duration.between(getDataDevolucao(), getDataDaLocacao()).toDays() + 1;
 
         Cliente cliente = locadora.get(veiculo);
+
+        long dias = Duration.between(getDataDevolucao(), getDataLocacao()).toDays() + 1;
         Double desconto = 0.0;
 
         if (cliente instanceof ClientePF && dias > 5) {
             desconto = 0.05;
-            if (cliente instanceof ClientePJ && dias > 5) {
+            if (cliente instanceof ClientePJ && dias > 3) {
                 desconto = 0.1;
             }
         }
@@ -62,21 +67,28 @@ public class Locadora {
         };
     }
 
-    public LocalDateTime getDataDevolucao() {
-        return dataDevolucao;
-    }
-
-    public LocalDateTime getDataDaLocacao() {
+    public LocalDateTime getDataLocacao() {
         return dataLocacao;
     }
-
 
     public void setDataLocacao(LocalDateTime dataLocacao) {
         this.dataLocacao = dataLocacao;
     }
 
+    public LocalDateTime getDataDevolucao() {
+        return dataDevolucao;
+    }
+
     public void setDataDevolucao(LocalDateTime dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
+    }
+
+    public Locale getLocal() {
+        return local;
+    }
+
+    public void setLocal(Locale local) {
+        this.local = local;
     }
 
     public void listarVeiculosAlugados() {
