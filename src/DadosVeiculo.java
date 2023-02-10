@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class DadosVeiculo implements RepositoryVeiculo{
+public class DadosVeiculo implements RepositoryVeiculo {
 
     List<Veiculo> listaDeVeiculos = new ArrayList<>();
     @Override

@@ -6,6 +6,8 @@ public class Veiculo {
     private String placa;
     private Double quilometragem;
 
+    private Boolean disponivel;
+
 
     public Veiculo(String modelo, String marca, String ano, String placa, Double quilometragem) {
         this.modelo = modelo;
@@ -13,6 +15,7 @@ public class Veiculo {
         this.ano = ano;
         this.placa = placa;
         this.quilometragem = quilometragem;
+        this.disponivel = true;
     }
 
     public String getModelo() {
@@ -30,14 +33,18 @@ public class Veiculo {
     public String getPlaca() {
         return this.placa;
     }
-
     public void setTipo(TipoVeiculo.Tipo tipo) {
         this.tipo = tipo;
     }
     public TipoVeiculo.Tipo getTipo() {
         return this.tipo;
     }
-
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
+    }
     @Override
     public String toString() {
         return "Veiculo{" +

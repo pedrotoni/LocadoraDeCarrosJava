@@ -1,8 +1,4 @@
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.Locale;
-
-public abstract class Cliente extends Aluguel {
+public abstract class Cliente extends Locadora {
     private String idCliente;
 
     public Cliente(String idCliente) {
@@ -15,7 +11,7 @@ public abstract class Cliente extends Aluguel {
         return this.idCliente;
     }
 
-    public abstract void alugar(TipoVeiculo.Tipo tipo, String idCliente);
+    //public abstract void alugar(TipoVeiculo.Tipo tipo, String idCliente);
 
     public String getNomeCliente() {
         return null;
