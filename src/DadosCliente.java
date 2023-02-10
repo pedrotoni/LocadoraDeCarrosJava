@@ -1,18 +1,30 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DadosCliente implements RespositoryCliente {
 
     List<Cliente> listaDeClientes = new ArrayList<>();
     @Override
     public void buscar(List<Cliente> lista, String nomeBusca) {
-        System.out.println("Resultado da busca por "+nomeBusca);
-        lista.stream().filter(cliente -> nomeBusca.equals(cliente.getNomeCliente()))
-                .forEach(cliente -> System.out.println("CPF: "+cliente.getCpfCliente()));
+        System.out.println("Resultado da busca por: "+nomeBusca);
 
-        lista.stream().filter(cliente -> nomeBusca.equals(cliente.getRazaoSocialCliente()))
-                .forEach(cliente -> System.out.println("CNPJ: "+cliente.getCnpjCliente()));
+        List<Cliente> resultadoNome = lista.stream()
+                .filter(cliente -> nomeBusca.equals(cliente.getNomeCliente())).toList();
+
+        List<Cliente> resultadoRazaoSocial = lista.stream()
+                .filter(cliente -> nomeBusca.equals(cliente.getRazaoSocialCliente())).toList();
+
+        if (!resultadoNome.isEmpty() || !resultadoRazaoSocial.isEmpty()) {
+            resultadoNome.forEach(cliente -> System.out.println("CPF: "+cliente.getCpfCliente()));
+            resultadoRazaoSocial.forEach(cliente -> System.out.println("CNPJ: "+cliente.getCnpjCliente()));
+            System.out.println("--------------------");
+        } else {
+            System.out.println("Nenhum resultado encontrado para cliente "+nomeBusca+".");
+            System.out.println("--------------------");
+        }
     }
+
 
     @Override
     public <T extends Cliente> void cadastrar(T cliente) {
@@ -28,6 +40,7 @@ public class DadosCliente implements RespositoryCliente {
 
         listaDeClientes.add(cliente);
         System.out.println("Novo cadastro de cliente realizado com sucesso!");
+        System.out.println("--------------------");
     }
 
     private boolean isClienteDisponivel(String numeroDocumento) {

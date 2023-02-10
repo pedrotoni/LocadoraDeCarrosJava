@@ -65,7 +65,7 @@ public class Main1 {
 //                LocalDateTime.of(2023,11,2,8,34)),
 //                "Pedro","34655544433");
 
-        ClientePF pedro = new ClientePF("2", LocalDateTime.of(2023,10,2,8,45), LocalDateTime.of(2023,11,2,8,34), "Pedro", "2541184");
+        ClientePF pedro = new ClientePF("2", LocalDateTime.of(1999,2,8,8,45), LocalDateTime.of(2023,11,2,8,34), "Pedro", "2541184");
 //        ClientePF pedro2 = new ClientePF ("26",
 //                /*LocalDateTime.of(2023,10,2,8,45),
 //                LocalDateTime.of(2023,11,2,8,34),*/
@@ -88,11 +88,12 @@ public class Main1 {
 //        banco.cadastrar(fabrica);
 //        banco.cadastrar(fabrica2);
         banco.listarTodos();
-        banco.buscar(banco.listaDeClientes,"Loja da Amanda");
+        banco.buscar(banco.listaDeClientes,"Jarbas");
+        bancoVeiculo.buscar(bancoVeiculo.listaDeVeiculos,"Fox");
+        bancoVeiculo.buscar(bancoVeiculo.listaDeVeiculos,"Mercedes");
 
-        locadora.alugar(pedro, fox, fox.getTipo());
-        locadora.listarVeiculosAlugados();
-        locadora.devolver(fox, fox.getTipo());
+        locadora.alugar(pedro,fox,fox.getTipo());
+        locadora.devolver(fox,fox.getTipo());
 
     }
 }

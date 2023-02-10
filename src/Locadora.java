@@ -11,47 +11,65 @@ public class Locadora {
     private LocalDateTime dataDevolucao;
 
     private Locale local;
+    private static final double BASE_CALC_VEIC_PEQUENO = 100;
+    private static final double BASE_CALC_VEIC_MEDIO = 150;
+    private static final double BASE_CALC_VEIC_SUV = 200;
 
     public Locadora() {
         locadora = new HashMap<>();
     }
+
     public void alugar(Cliente cliente, Veiculo veiculo, TipoVeiculo.Tipo tipo) {
 
-            if(locadora.containsKey(veiculo) && veiculo.getDisponivel() == false) {
-                System.out.println("Este veiculo não está disponivel");
-            } else {
-                locadora.put(veiculo, cliente);
-                setDataLocacao(LocalDateTime.now());
-                veiculo.setDisponivel(false);
-                System.out.println("Veículo alugado com sucesso!");
-            }
+        if (locadora.containsKey(veiculo) && !veiculo.getDisponivel()) {
+            System.out.println("Este veiculo não está disponivel");
+        } else {
+            locadora.put(veiculo, cliente);
+            setDataLocacao(LocalDateTime.now());
+            veiculo.setDisponivel(false);
+            System.out.println("Veículo alugado com sucesso!");
+        }
     }
 
-    public Double devolver(Veiculo veiculo, TipoVeiculo.Tipo tipo) {
+    public void devolver(Veiculo veiculo, TipoVeiculo.Tipo tipo) {
         if(locadora.containsKey(veiculo)) {
             locadora.remove(veiculo);
             setDataDevolucao(LocalDateTime.now());
             System.out.println("Valor total do aluguel: "+ calcularAluguel(veiculo, tipo));
-            return calcularAluguel(veiculo, tipo);
+            calcularAluguel(veiculo, tipo);
         }
         System.out.println("Esse veículo não foi alugado.");
-        return null;
+    }
+
+    private Double calcularDesconto(Cliente cliente, long dias) {
+
+        if (cliente instanceof ClientePF && dias > 5) {
+            return 0.05;
+        }
+
+        if (cliente instanceof ClientePJ && dias > 3) {
+            return 0.1;
+        }
+
+        return 0.0;
     }
 
     private Double calcularAluguel(Veiculo veiculo, TipoVeiculo.Tipo tipo) {
         //double valorAluguel = 0;
+        /*if (getDataDevolucao().isBefore(getDataLocacao())) {
+            throw new IllegalArgumentException("A data de devolução deve ser posterior à data de locação");
+        }*/
 
         Cliente cliente = locadora.get(veiculo);
 
-        long dias = Duration.between(getDataDevolucao(), getDataLocacao()).toDays() + 1;
-        Double desconto = 0.0;
+        long dias = Duration.between(getDataDevolucao(), getDataLocacao()).toDays();
+        /*
+        VERIFICAÇÃO PARA CHECAR O VALOR DE DIAS, DATA DEVOLUCAO E DATA LOCACAO
+        System.out.println("Dias: "+dias);
+        System.out.println(getDataLocacao());
+        System.out.println(getDataDevolucao());*/
+        Double desconto = calcularDesconto(cliente,dias);
 
-        if (cliente instanceof ClientePF && dias > 5) {
-            desconto = 0.05;
-            if (cliente instanceof ClientePJ && dias > 3) {
-                desconto = 0.1;
-            }
-        }
 //        if(tipo == TipoVeiculo.Tipo.PEQUENO) {
 //            valorAluguel = dias * 100.00;
 //        } else if (tipo == TipoVeiculo.Tipo.MEDIO) {
@@ -61,14 +79,14 @@ public class Locadora {
 //        }
 //        System.out.println("O aluguel desse veículo por " + dias +" dias" + " irá custar: " + valorAluguel + " reais.");
         return switch (tipo) {
-            case PEQUENO -> (double) (dias * 100) - (dias * 100 * desconto);
-            case MEDIO -> (double) (dias * 150) - (dias * 150 * desconto);
-            case SUV -> (double) (dias * 200) - (dias * 200 * desconto);
+            case PEQUENO -> (dias * BASE_CALC_VEIC_PEQUENO) - (dias * BASE_CALC_VEIC_PEQUENO * desconto);
+            case MEDIO ->  (dias * BASE_CALC_VEIC_MEDIO) - (dias * BASE_CALC_VEIC_MEDIO * desconto);
+            case SUV -> (dias * BASE_CALC_VEIC_SUV) - (dias * BASE_CALC_VEIC_SUV * desconto);
         };
     }
 
     public LocalDateTime getDataLocacao() {
-        return dataLocacao;
+        return this.dataLocacao;
     }
 
     public void setDataLocacao(LocalDateTime dataLocacao) {
@@ -76,7 +94,7 @@ public class Locadora {
     }
 
     public LocalDateTime getDataDevolucao() {
-        return dataDevolucao;
+        return this.dataDevolucao;
     }
 
     public void setDataDevolucao(LocalDateTime dataDevolucao) {
@@ -93,9 +111,15 @@ public class Locadora {
 
     public void listarVeiculosAlugados() {
         Set<Veiculo> alugados = locadora.keySet();
-        for (Veiculo alugado : alugados) {
-            if (alugado != null)
-                System.out.println(alugado + " | " + locadora.get(alugado));
+        System.out.println("Veiculos alugados: ");
+        if (alugados.isEmpty()) {
+            System.out.println("Não há veículos alugados.");
+        } else {
+            for (Veiculo alugado : alugados) {
+                if (alugado != null)
+                    System.out.println(alugado+ "\nCliente: "+locadora.get(alugado));
+                System.out.println("--------------------");
+            }
         }
     }
 

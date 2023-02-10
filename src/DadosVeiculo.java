@@ -6,9 +6,18 @@ public class DadosVeiculo implements RepositoryVeiculo {
     List<Veiculo> listaDeVeiculos = new ArrayList<>();
     @Override
     public void buscar(List<Veiculo> lista, String nomeBusca) {
-        System.out.println("Resultado da busca por "+nomeBusca);
-        lista.stream().filter(veiculo -> nomeBusca.equals(veiculo.getModelo()))
-                .forEach(veiculo -> System.out.println("Placa: "+veiculo.getPlaca()));
+        System.out.println("Resultado da busca por: "+nomeBusca);
+        List<Veiculo> resultadoVeiculos = lista.stream()
+                .filter(veiculo -> nomeBusca.equals(veiculo.getModelo())).toList();
+
+        if(!resultadoVeiculos.isEmpty()) {
+            resultadoVeiculos.forEach(veiculo -> System.out.println("Placa: "+veiculo.getPlaca()));
+            System.out.println("--------------------");
+        } else {
+            System.out.println("Nenhum resultado encontrado para o veículo "+nomeBusca+".");
+            System.out.println("--------------------");
+        }
+
     }
 
     private boolean isPlacaDisponivel(String placa) {

@@ -33,7 +33,7 @@ public abstract class Cliente extends Locadora {
     };
 
     public LocalDateTime getDataLocacao() {
-        return dataLocacao;
+        return this.dataLocacao;
     }
 
     @Override
@@ -43,7 +43,7 @@ public abstract class Cliente extends Locadora {
 
     @Override
     public LocalDateTime getDataDevolucao() {
-        return dataDevolucao;
+        return this.dataDevolucao;
     }
 
     @Override

@@ -47,14 +47,12 @@ public class Veiculo {
     }
     @Override
     public String toString() {
-        return "Veiculo{" +
-                "tipo=" + tipo +
-                ", modelo='" + modelo + '\'' +
-                ", marca='" + marca + '\'' +
-                ", ano='" + ano + '\'' +
-                ", placa='" + placa + '\'' +
-                ", quilometragem=" + quilometragem +
-                '}';
+        return "Categoria: "+this.tipo+
+                "\nModelo: "+this.modelo+
+                "\nMarca: "+this.marca+
+                "\nAno: "+this.ano+
+                "\nPlaca: "+this.placa+
+                "\nQuilometragem: "+this.quilometragem;
     }
 }
 
