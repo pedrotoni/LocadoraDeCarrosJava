@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class DadosCliente implements RespositoryCliente {
+public class DadosCliente implements RepositoryCliente {
 
     List<Cliente> listaDeClientes = new ArrayList<>();
     @Override

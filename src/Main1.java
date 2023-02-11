@@ -1,99 +1,131 @@
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 public class Main1 {
     public static void main(String[] args) {
+        //Por Rachel Lizandra e Pedro de Toni
+        
+        DadosVeiculo bancoVeiculos = new DadosVeiculo();
+        DadosCliente bancoClientes = new DadosCliente();
+        Locacao locacao = new Locacao();
+        //CHECKLIST:
 
-                /*
-        Criar uma aplicação que gerencie o aluguel de veículos, onde cada item abaixo seja considerado:
+        //CADASTRANDO VEICULOS
+        Moto suzuki = new Moto(TipoVeiculo.Tipo.MEDIO,"Ninja","Suzuki","2003",
+                "SUZ-1202",25000.00,"4");
+        Caminhao scania = new Caminhao(TipoVeiculo.Tipo.MEDIO,"Truck","Scania","2005",
+                "SCA-5030",69999.99,"50");
+        Carro palio = new Carro(TipoVeiculo.Tipo.PEQUENO,"Palio","Fiat","1998",
+                "PAL-3030",25070.35,"60");
+        Carro blazer = new Carro(TipoVeiculo.Tipo.SUV,"Blazer","Chevrolet","1995",
+                "BLA-1000",100000.00,"200");
+        bancoVeiculos.cadastrar(suzuki);
+        bancoVeiculos.cadastrar(scania);
+        bancoVeiculos.cadastrar(palio);
+        bancoVeiculos.listarTodos();
 
-    Itens obrigatórios
-    Cadastrar os veículos; ok
-    Alterar um veículo cadastrado; ok
-    Buscar um veículo por parte do nome; ok
-    Cadastrar o cliente (pessoa física e jurídica) ok
-    Alterar o cliente (pessoa física e jurídica) ok
-    Alugar um veículo para pessoa física e jurídica; ok
-    Devolver um veículo para pessoa física e jurídica;
-    Regras de negócio
-    RN1: Os veículos não podem ser repetidos; Pode utilizar a placa como identificador de unicidade; ok
-    RN2: Tipos de veículos que serão considerados: Carro, Moto, Caminhões; ok
-    RN3: Os aluguéis e devoluções terão o local, data e horário; ok
-    RN4: Considere aluguel em horas quebradas como uma diária completa. Exemplo: uma devolução de um veículo alugado no dia 25 de janeiro às 15h30 será cobrado uma (1) diária até dia 26 de janeiro às 15h30, a partir desse horário já serão cobradas duas (2) diárias e assim por diante.
-    RN5: Os veículos que estiverem alugados não poderão estar disponíveis; ok
-    RN6: Clientes não podem estar duplicados; Considerar CPF (Pessoa Física) e CNPJ (Pessoa Jurídica) como identificadores de unicidade;
-    RN7: Regras de devolução:
-    Caso o cliente pessoa física tenha ficado com o carro mais que 5 diárias terá direito a 5% de desconto. ok
-    Caso o cliente pessoa jurídica tenha ficado com o carro mais que 3 diárias terá direito a 10% de desconto. ok
-    Valores base da diária por tipo de veículo:
+        //ALTERANDO VEICULO JÁ CADASTRADO
+        Carro fiesta = new Carro(TipoVeiculo.Tipo.PEQUENO,"Fiesta","Ford","2006",
+        "FIE-3303",50060.20,"22");
+        Carro fiesta2 = new Carro(TipoVeiculo.Tipo.PEQUENO,"Fiesta","Ford","2010",
+                "GKW-3411",55030.20,"23");
 
-    Tipo de Veículo	Valor por dia ok
-    pequeno	R$ 100,00
-    medio	R$ 150,00
-    SUV	R$ 200,00
+        bancoVeiculos.atualizar(palio,fiesta);
+        bancoVeiculos.listarTodos();
 
-    Falta MenuInterativo
-    Organizar as pastas
-                 */
-        DadosVeiculo bancoVeiculo = new DadosVeiculo();
-        Locadora locadora = new Locadora();
+        //BUSCAR VEICULO (EXEMPLO COM 2 VEICULOS IGUAIS COM PLACAS DIFERENTES)
+        bancoVeiculos.cadastrar(fiesta2);
+        bancoVeiculos.buscar(bancoVeiculos.listaDeVeiculos,"Fiesta");
 
-        Carro fox = new Carro(TipoVeiculo.Tipo.PEQUENO,"Fox","Volkswagen","2005",
-                "AKE-3010",30503.33,"1");
-        Carro fox2 = new Carro(TipoVeiculo.Tipo.PEQUENO,"Fox","Volkswagen","2008",
-                "KYO-5004",6456.43,"66");
+        //CADASTRAR CLIENTE
+        ClientePF pedro = new ClientePF("1","Pedro","403020303-20");
+        ClientePF rachel = new ClientePF("2","Rachel","704404030-20");
+        ClientePJ fabrica = new ClientePJ("40","Fabrica de Brinquedos",
+                "43.000.222/0001-20");
+        ClientePJ loja = new ClientePJ("64","Loja da Amanda","30.202.202/0001-20");
+        bancoClientes.cadastrar(pedro);
+        bancoClientes.cadastrar(rachel);
+        bancoClientes.cadastrar(fabrica);
+        bancoClientes.cadastrar(loja);
+        bancoClientes.listarTodos();
 
-        Carro hillux = new Carro(TipoVeiculo.Tipo.SUV,"Hillux","Toyota","2023",
-                "KYO-5577",856.43,"69");
-        Moto cg = new Moto(TipoVeiculo.Tipo.PEQUENO,"CG","Honda","2010",
-                "BIE-3445",2000.00,"3");
-        Caminhao scania = new Caminhao(TipoVeiculo.Tipo.MEDIO,"Truck","Scania",
-                "1999","KEO-3100",300054.22,"8");
+        //ALTERAR CLIENTE PF
+        ClientePF bruna = new ClientePF("68","Bruna","501020000-11");
+        bancoClientes.atualizar(pedro,bruna);
 
-        bancoVeiculo.cadastrar(fox);
-        bancoVeiculo.cadastrar(fox2);
-        bancoVeiculo.cadastrar(cg);
-        bancoVeiculo.cadastrar(scania);
-        bancoVeiculo.cadastrar(hillux);
-        bancoVeiculo.listarTodos();
-        bancoVeiculo.buscar(bancoVeiculo.listaDeVeiculos,"Fox");
-        bancoVeiculo.buscar(bancoVeiculo.listaDeVeiculos, "CG");
+        //ALTERAR CLIENTE PJ
+        ClientePJ padaria = new ClientePJ("102","Padaria da Joana","40.202.111/0002-22");
+        bancoClientes.atualizar(fabrica,padaria);
+        bancoClientes.listarTodos();
 
-        DadosCliente banco = new DadosCliente();
-//                "1999","KEO-3100",300054.22,"8");
-//        ClientePF pedro = new ClientePF ("2",
-//                LocalDateTime.of(2023,10,2,8,45),
-//                LocalDateTime.of(2023,11,2,8,34)),
-//                "Pedro","34655544433");
+        //DEVOLVER VEICULO PF
+        locacao.alugar(fiesta,rachel,LocalDateTime.of(2023,1,2,12,30), Locale.JAPAN);
+        //DADOS DO ALUGUEL: PESSOA FISICA / 10 DIAS / VEICULO PEQUENO -> 100 X 10 - (100 X 10 x 0.05) = 950
+        locacao.devolver(fiesta,rachel,LocalDateTime.of(2023,1,12,12,30),Locale.JAPAN);
 
-        ClientePF pedro = new ClientePF("2", LocalDateTime.of(1999,2,8,8,45), LocalDateTime.of(2023,11,2,8,34), "Pedro", "2541184");
-//        ClientePF pedro2 = new ClientePF ("26",
-//                /*LocalDateTime.of(2023,10,2,8,45),
-//                LocalDateTime.of(2023,11,2,8,34),*/
-//                "Pedro","346555444335");
-//        ClientePJ fabrica = new ClientePJ ("99",
-//                /*LocalDateTime.of(2023,10,2,8,45),
-//                LocalDateTime.of(2023,11,2,8,34),*/
-//                "Fabrica do Caio","549592906246956");
-//        ClientePJ fabrica2 = new ClientePJ ("8",
-//                /*LocalDateTime.of(2023,10,2,8,45),
-//                LocalDateTime.of(2023,11,2,8,34),*/
-//                "Loja da Amanda","6536056035356353503");
-//        ClientePF carla = new ClientePF ("6",
-//                /*LocalDateTime.of(2023,10,2,8,45),
-//                LocalDateTime.of(2023,11,2,8,34),*/
-//                "Carla","34655544433");
+        //DEVOLVER VEICULO PJ
+        locacao.alugar(blazer,padaria,LocalDateTime.of(2023,1,1,15,0),Locale.ITALY);
+        //DADOS DO ALUGUEL: PESSOA JURIDICA / 5 DIAS / VEICULO SUV = 200 * 5 - (200 * 5 * 0,1) = 900
+        locacao.devolver(blazer,padaria,LocalDateTime.of(2023,1,6,15,0),Locale.ITALY);
+        //TENTANDO DEVOLVER VEICULO NÃO ALUGADO
+        locacao.devolver(suzuki,rachel,LocalDateTime.of(2023,1,12,12,30),Locale.JAPAN);
 
-        banco.cadastrar(pedro);
-//        banco.cadastrar(pedro2);
-//        banco.cadastrar(fabrica);
-//        banco.cadastrar(fabrica2);
-        banco.listarTodos();
-        banco.buscar(banco.listaDeClientes,"Jarbas");
-        bancoVeiculo.buscar(bancoVeiculo.listaDeVeiculos,"Fox");
-        bancoVeiculo.buscar(bancoVeiculo.listaDeVeiculos,"Mercedes");
+        /*RN1: VEICULOS NAO PODEM SER REPETIDOS (PLACA COMO IDENTIFICAÇÃO) - OBS: DESCOMENTE PARA TESTAR
+        Moto hondacross = new Moto(TipoVeiculo.Tipo.MEDIO,"Cross","Honda","2003",
+                "SUZ-1202",25000.00,"8");
+        bancoVeiculos.cadastrar(hondacross);*/
 
-        locadora.alugar(pedro,fox,fox.getTipo());
-        locadora.devolver(fox,fox.getTipo());
+        //RN2: VEICULOS SÃO MOTO CAMINHÃO E CARRO -> OK
+        //RN3: ALUGUEL TEM QUE TER DATA HORARIO E LOCAL -> OK
 
+        //RN4: ALUGUEL/DEVOLUCAO TEM QUE CONSIDERAR HORAS QUEBRADAS COMO DIÁRIA COMPLETA
+
+        //UMA DIÁRIA EXATA
+        locacao.alugar(suzuki,loja,LocalDateTime.of(2023,1,1,15,0),Locale.ITALY);
+        //DADOS DO ALUGUEL: PESSOA JURIDICA / DO DIA 01/01/2023 AS 15H00 ÀS 02/01/2023 AS 15H00 / VEICULO MEDIO = 150 * 1 = 150
+        locacao.devolver(suzuki,loja,LocalDateTime.of(2023,1,2,15,0),Locale.ITALY);
+
+        //UM MINUTO ANTES DE COMPLETAR UMA DIÁRIA
+        locacao.alugar(suzuki,loja,LocalDateTime.of(2023,1,1,15,0),Locale.ITALY);
+        //DADOS DO ALUGUEL: PESSOA JURIDICA / DO DIA 01/01/2023 AS 15H00 ÀS 02/01/2023 AS 14H59 / VEICULO MEDIO = 150 * 1 = 150
+        locacao.devolver(suzuki,loja,LocalDateTime.of(2023,1,2,14,59),Locale.ITALY);
+
+        //UM MINUTO DEPOIS DE COMPLETAR UMA DIÁRIA
+        locacao.alugar(suzuki,loja,LocalDateTime.of(2023,1,1,15,0),Locale.ITALY);
+        //DADOS DO ALUGUEL: PESSOA JURIDICA / DO DIA 01/01/2023 AS 15H00 ÀS 02/01/2023 AS 15H01 / VEICULO MEDIO = 150 * 2 = 300
+        locacao.devolver(suzuki,loja,LocalDateTime.of(2023,1,2,15,1),Locale.ITALY);
+
+        //RN5: VEICULO ALUGADO NÃO PODE ESTAR DISPONIVEL
+        locacao.alugar(fiesta,rachel,LocalDateTime.of(2023,1,1,15,0),Locale.CANADA);
+        locacao.alugar(fiesta,rachel,LocalDateTime.of(2023,1,1,15,0),Locale.CANADA);
+
+        //RN6: CLIENTE PF/PJ NÃO PODE ESTAR DUPLICADO. - OBS: DESCOMENTE PARA TESTAR
+        /*
+        ClientePF rachel2 = new ClientePF("2","Rachel","704404030-20");
+        ClientePJ padaria2 = new ClientePJ("102","Padaria da Joana","40.202.111/0002-22");
+        bancoClientes.cadastrar(rachel2);
+        bancoClientes.cadastrar(padaria2);*/
+
+        //RN7: REGRAS DE DEVOLUÇÃO -> JÁ DEMONSTRADO DAS LINHAS 59 A 69 DESTA CLASSE MAIN.
+
+        //OUTROS TESTES:
+        /*
+        //ERRO - DATA DE DEVOLUÇÃO ANTES DA DATA DE LOCAÇÃO - OBS: DESCOMENTE PARA TESTAR.
+        locacao.alugar(scania,padaria,LocalDateTime.of(2023,10,10,10,0),Locale.FRANCE);
+        locacao.devolver(scania,padaria,LocalDateTime.of(2023,10,10,9,0),Locale.FRANCE);*/
+
+        //REMOÇÃO DE CLIENTES E VEICULOS
+        bancoClientes.deletar(rachel);
+        bancoClientes.deletar(loja);
+        bancoClientes.deletar(bruna);
+        bancoClientes.deletar(padaria);
+        bancoVeiculos.deletar(fiesta);
+        bancoVeiculos.deletar(scania);
+        bancoVeiculos.deletar(fiesta2);
+        bancoVeiculos.deletar(suzuki);
+
+        //MENSAGEM DE LISTA VAZIA (CLIENTES & VEICULOS)
+        bancoClientes.listarTodos();
+        bancoVeiculos.listarTodos();
     }
 }

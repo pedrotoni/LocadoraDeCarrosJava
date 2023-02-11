@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface RespositoryCliente {
+public interface RepositoryCliente {
     void buscar(List<Cliente> lista, String nomeBusca);
 
     <T extends Cliente> void cadastrar(T cliente);
