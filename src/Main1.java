@@ -4,7 +4,7 @@ import java.util.Locale;
 public class Main1 {
     public static void main(String[] args) {
         //Por Rachel Lizandra e Pedro de Toni
-        
+
         DadosVeiculo bancoVeiculos = new DadosVeiculo();
         DadosCliente bancoClientes = new DadosCliente();
         Locacao locacao = new Locacao();
@@ -37,6 +37,9 @@ public class Main1 {
         bancoVeiculos.cadastrar(fiesta2);
         bancoVeiculos.buscar(bancoVeiculos.listaDeVeiculos,"Fiesta");
 
+        //BUSCANDO VEICULO QUE NAO EXISTE
+        bancoVeiculos.buscar(bancoVeiculos.listaDeVeiculos,"Ferrari");
+
         //CADASTRAR CLIENTE
         ClientePF pedro = new ClientePF("1","Pedro","403020303-20");
         ClientePF rachel = new ClientePF("2","Rachel","704404030-20");
@@ -48,6 +51,13 @@ public class Main1 {
         bancoClientes.cadastrar(fabrica);
         bancoClientes.cadastrar(loja);
         bancoClientes.listarTodos();
+
+        //BUSCAR CLIENTE PELO NOME
+        bancoClientes.buscar(bancoClientes.listaDeClientes,"Rachel");
+        bancoClientes.buscar(bancoClientes.listaDeClientes,"Fabrica de Brinquedos");
+
+        //BUSCANDO CLIENTE QUE NAO EXISTE
+        bancoClientes.buscar(bancoClientes.listaDeClientes,"Serginho Mallandro");
 
         //ALTERAR CLIENTE PF
         ClientePF bruna = new ClientePF("68","Bruna","501020000-11");
@@ -106,7 +116,7 @@ public class Main1 {
         bancoClientes.cadastrar(rachel2);
         bancoClientes.cadastrar(padaria2);*/
 
-        //RN7: REGRAS DE DEVOLUÇÃO -> JÁ DEMONSTRADO DAS LINHAS 59 A 69 DESTA CLASSE MAIN.
+        //RN7: REGRAS DE DEVOLUÇÃO -> JÁ DEMONSTRADO DAS LINHAS 71 A 81 DESTA CLASSE MAIN.
 
         //OUTROS TESTES:
         /*
